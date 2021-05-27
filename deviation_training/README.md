@@ -1,7 +1,5 @@
 # deviations.py
-Blackjack Deviation Training Program
-
-This game is called Blackjack Deviations.  
+Blackjack Deviation Training Program: This game is called Blackjack Deviations and consists of two exercises.
 
 Running Count Exercise:
 
