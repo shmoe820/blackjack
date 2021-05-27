@@ -1,4 +1,4 @@
-# blackjack_deviations
+# deviations.py
 Blackjack Deviation Training Program
 
 This game is called Blackjack Deviations.  
