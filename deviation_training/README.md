@@ -3,13 +3,16 @@ Blackjack Deviation Training Program
 
 This game is called Blackjack Deviations.  
 
+Running Count Exercise:
 First, the program will present you with values for:
 - number of card decks
 - decks played
-- running count (RC)  
+- running count (RC)
 
 Your job is to input the True Count (TC = RC / Decks Remaining) and the program will inform you if your response is correct or not. 
+Note: Running Count Exercise is not available to deviations_true_count_given.py
 
+Deviations Exercise:
 Next, the program will present you with a player hand and a dealer hand.  
 Your job is to input the correct play based on Blackjack Basic Strategy and True Count Deviations: 
 - [H]it
