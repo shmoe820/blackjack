@@ -1,9 +1,17 @@
 # blackjack/true_count
 
-true_count.py
- - this program oo
- - this was created to track how long it takes to count down a deck of cards using the "Hi-Lo" technique
- - the timer starts/stops by hitting the "enter" key
- - when time is called, the user must input how many mistakes they made, and the program will add a time penalty
- - each iteration of the timer is similar to a loop on a stopwatch
- - metrics are output to the user to summarize their performance
+Blackjack True Count Training Program: This game is called Blackjack True Count and consists of one exercise.
+
+Running Count Exercise:
+
+First, the program will present you with values for:
+- number of card decks
+- decks played
+- running count (RC)
+
+Your job is to input the True Count (TC = RC / Decks Remaining) and the program will inform you if your response is correct or not. 
+
+The program will record how many rounds are played, how many mistakes are made, and the time it takes for the user to answer.
+Metrics are output to the user to summarize their performance.
+
+Once this program is mastered to satisfaction, check out blackjack/deviations/deviations.py to combine this exercise with a deviation exercise.
