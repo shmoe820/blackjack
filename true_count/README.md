@@ -14,4 +14,4 @@ Your job is to input the True Count (TC = RC / Decks Remaining) and the program 
 The program will record how many rounds are played, how many mistakes are made, and the time it takes for the user to answer.
 Metrics are output to the user to summarize their performance.
 
-Once this program is mastered to satisfaction, check out blackjack/deviation_training/deviations.py to combine this exercise with a deviation exercise.
+Once this program is mastered to satisfaction, check out blackjack/deviation_true_count/deviations.py to combine this exercise with a deviation exercise.
