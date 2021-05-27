@@ -23,4 +23,4 @@ The object of the game is to answer as accurately and as quickly as possible.
 
 A summary file will be created at the completion of the program to log the user's performance.
 
-Once this program is mastered to the user's satisfaction, check out blackjack/deviations_true_count/deviations.py to combine the Running Count Exercise with the Deviations exercise.
+Once this program is mastered to the user's satisfaction, check out blackjack/deviation_true_count/deviations.py to combine the Running Count Exercise with the Deviations exercise.
