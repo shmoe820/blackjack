@@ -6,8 +6,6 @@ import pandas as pd
 import webbrowser
 import math
 
-# TO DO: figure out why df['RC Streak'].max() doesn't work properly
-
 def instruction():
     # Instructions discussing object of the game
     instructions = 'This game is called Blackjack Deviations and it will be used in conjunction with notepad \n' \
