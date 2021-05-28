@@ -6,33 +6,99 @@ import pandas as pd
 import webbrowser
 import math
 
-def instruction():
-    # Instructions discussing object of the game
-    instructions = 'This game is called Blackjack Deviations and it will be used in conjunction with notepad \n' \
-                "file 'deviations_summary.csv'.  First, the program will present you with values for number \n" \
-                "of card decks, decks played, and a Running Count.  Your job is to input the True Count \n" \
-                "(TC = RC / Decks Remaining) and the program will inform you if your response is correct \n" \
-                "or not. Next, the program will present you with a player hand and a dealer hand.  Your job\n" \
-                "is to input the correct play based on Blackjack Basic Strategy and True Count Deviations:" \
-                "\n\t[H]it\n\t[S]tand\n\t[DH] double otherwise (o/w) hit\n\t[DS] double o/w stand\n\ts[P]lit" \
-                "\n\t[RH] surrender o/w hit\n\t[RS] surrender o/w stand\n\t[I]nsurance.\nPossible correct" \
-                " responses are the letters shown in the brackets above.\n" \
-                "For example: if the correct decision is [H]it, input 'H'. User inputs are not case sensitive.\n" \
-                "The object of the game is to answer as accurately and as quickly as possible.   " \
-                "\n\n**Enter 'q' at any time to end the program.**\n"
-    print('\n*****     *****     *****     *****\n')
-    print(instructions)
+def introduction():
+    # Introduction to the game
+    # PH: Player Hand; DH: Dealer Hand; BS: Basic Strategy; TC: True Count; RC: Running Count; o/w: otherwise
+    intro = '\nWelcome to Blackjack Deviations! This program is useful for practicing two exercises that\n' \
+            'are critical to successful card counting: \n\n' \
+            '\t(i)  True Count calculations\n' \
+            '\t(ii) Deviation decisions'
 
-    # For those unfamiliar with deviations from perfect blackjack basic strategy, view this video
+    true_count_directions = '\nDirections for True Count exercise:\n\n' \
+            '\tStep 1: Three variables are printed:\n' \
+            '\t\t- Decks: total number of cards decks in the game \n' \
+            '\t\t- DP (Decks Played): number of decks that have already been played \n' \
+            '\t\t- RC (Running Count): the count which players apply in order to determine the\n' \
+            '\t\t\ttrue count by counting the cards during the course of the game, using\n' \
+            '\t\t\ta particular card counting system. The popular card counting system \n' \
+            '\t\t\tis called "Hi-Lo" where cards 2, 3, 4, 5 & 6 have value of +1, cards\n' \
+            '\t\t\t7,8 & 9 have a value of 0, and cards 10, J, Q, K, & A have value -1.\n' \
+            '\t\t\tFor this exercise, the Running Count is given.\n\n'\
+            '\tStep 2: Calculate the True Count based on the "Hi-Lo" system:\n' \
+            '\t\t- True Count = Running Count / (Decks - Decks Played)\n' \
+            '\t\t\tFor True Counts > 0: round down to the nearest integer\n' \
+            '\t\t\tFor True Counts < 0: round up to the nearest integer\n\n' \
+            '\tStep 3: Input the True Count integer and the program will check for correctness:\n' \
+            '\t\t- The message "Correct" will appear for correct answers\n' \
+            '\t\t- The message "Incorrect" will appear for incorrect answers\n' \
+            '\t\t- The correct True Count (TC) will be shown as part of the Deviation exercise'
+
+    deviation_directions = '\nDirections for Deviation exercise:\n\n' \
+            '\tStep 1: Three variables are printed:\n' \
+            '\t\t- PH (Player Hand): two cards are assigned to the player\n' \
+            '\t\t- DH (Dealer Hand): one card is assigned to the dealer\n' \
+            '\t\t- TC (True Count): RC / (Decks - DP)\n\n' \
+            '\tStep 2: Input the correct play based on Basic Strategy, True Count & Deviations:\n' \
+            '\t\t- [H]it\t\t\t\t\t- s[P]lit\n' \
+            '\t\t- [S]tand\t\t\t\t- [RH] surrender o/w hit\n' \
+            '\t\t- [DH] double otherwise (o/w) hit\t- [RS] surrender o/w stand\n' \
+            '\t\t- [DS] double o/w stand\t\t\t- [I]nsurance\n\n' \
+            '\t\tExample: enter "H" if the correct decision is [H]it'
+
+    true_count_website = 'https://www.qfit.com/CalculatingTrueCounts.htm#:~:text=True%20Count%20Calculation' \
+                         '%20%E2%80%94%20The%20Whole%20Story&text=That%20is%2C%20convert%20the%20running,' \
+                         'remaining%20decks%20in%20the%20shoe.'
+
     deviations_video = 'https://www.blackjackapprenticeship.com/blackjack-deviations/'
-    watch_video = input('If you would like to watch a quick video to further explain deviations, type "Y".\n'
-                        'Otherwise, press "enter" to continue or press [q]uit.\n\n')
-    if watch_video == 'Y':
-        webbrowser.open(deviations_video)
-    # Quit program
-    if watch_video == 'q':
-        print('\nHope to see see you again soon...\n\n')
-        exit()
+
+    directions_string = '\nFor additional information, input a number from the following list, press "enter" to\n' \
+                        'continue on to the exercises, or input "q" to quit:\n\n' \
+                        '\t1 : True Count exercise directions\n' \
+                        '\t2 : Deviations exercise directions\n' \
+                        '\t3 : Webpage describing True Count\n' \
+                        '\t4 : Video describing Deviations\n' \
+                        '\tq : exit program\n'
+
+    reprinted_directions_string = '\n1 : True Count exercise directions \t2 : Deviations exercise directions\n' \
+                        '3 : Webpage describing True Count \t4 : Video describing Deviations\n' \
+                        'q : exit program\n'
+
+    formatting = '\n' + (('*'*5) + (' '*5))*9
+
+    print(formatting)
+    print(intro)
+    print(directions_string)
+
+
+
+    while True:
+        directions = input('User Input: ')
+        print(formatting)
+
+        if directions == '1':
+            print(true_count_directions)
+            print(reprinted_directions_string)
+        elif directions == '2':
+            print(deviation_directions)
+            print(reprinted_directions_string)
+        elif directions == '3':
+            webbrowser.open(true_count_website)
+            print(reprinted_directions_string)
+        elif directions == '4':
+            webbrowser.open(deviations_video)
+            print(reprinted_directions_string)
+        elif directions == 'q' or directions == 'Q':
+            print('\nHope to see see you again soon...\n\n')
+            exit()
+        elif len(directions) == 0:
+            print('\nOkay, it is time to begin the exercises!')
+            print('\n** Input "q" at any time to end the program. **\n')
+            break
+        else:
+            print('\nInvalid input.\n')
+            print(reprinted_directions_string)
+            continue
+
 def time_current():
     # Records the current time
     time = datetime.datetime.now()
@@ -97,7 +163,7 @@ def deviation_hands():
         # PH: 15  DH: 10  BS: [RH] surrender if 0<=TC<4 o/w hit  Deviation: [H]it if TC 0-; [RS] surrender if TC 4+ o/w stand
         [5, 10, 10], [5, 10, 10], [5, 10, 10], [5, 10, 10], [6, 9, 10], [7, 8, 10],
         [10, 5, 10], [10, 5, 10], [10, 5, 10], [10, 5, 10], [9, 6, 10], [8, 7, 10],
-        # PH: 15  DH: A  BS: [RH] surrender if -1<=TC<5 o/w hit Deviation: [H]it if TC -1-; [RS] surrender if TC 5+ o/w stand
+        # PH: 15  DH: A  BS: [RH] surrender if -1<=TC<5 o/w hit Deviation: [H]it if TC <-1; [RS] surrender if TC 5+ o/w stand
         [5, 10, 'A'], [5, 10, 'A'], [5, 10, 'A'], [5, 10, 'A'], [6, 9, 'A'], [7, 8, 'A'],
         [10, 5, 'A'], [10, 5, 'A'], [10, 5, 'A'], [10, 5, 'A'], [9, 6, 'A'], [8, 7, 'A'],
         # PH: 16  DH: 8  BS: [H]it  Deviation: [RH] surrender if TC 4+ o/w hit
@@ -253,6 +319,7 @@ class Running_count():
         # User to input the True Count as an integer
         # For TC>=1 round to nearest integer using the floor method (math.floor())
         # For TC<=-1 round to nearest integer using the ceiling method (math.ceil())
+            # This poses an issues for PH: 15 DH: A TC: -1.5
         # For -1<TC<1: 0 is the correct answer
         self.game_true_count_user = input('What is the running count? ')
 
@@ -276,6 +343,7 @@ class Running_count():
 
         # The calculated TC is rounded (as needed)
         # Ceiling method for negative TC
+            # This poses an issues for PH: 15 DH: A TC: -1.5
         if self.game_true_count <= -1:
             self.game_true_count = math.ceil(self.game_true_count)
 
@@ -550,12 +618,12 @@ class Deviations_decision_tree():
                 return 1
             if self.decision not in self.action_rh:
                 return 0, self.rh, '15 vs. {10 @ 0 <= TC < 4 // A @ -1 <= TC < 5}'
-        # PH: 15  DH: 10 or A  BS: [RH] surrender if 0<=TC<4 or -1<=TC<5 o/w hit  Deviation: [H]it if TC 0- or -1-
+        # PH: 15  DH: 10 or A  BS: [RH] surrender if 0<=TC<4 or -1<=TC<5 o/w hit  Deviation: [H]it if TC 0- or <-1
         elif self.dealer == 10 and self.count < 0 or self.dealer == 11 and self.count < -1:
             if self.decision in self.action_h:
                 return 1
             if self.decision not in self.action_h:
-                return 0, self.h, '15 vs. {10 @ TC 0- // A @ TC -1-}'
+                return 0, self.h, '15 vs. {10 @ TC 0- // A @ TC <-1}'
         # PH: 15  DH: 10 or A  BS: [RH] surrender if 0<=TC<4 or -1<=TC<5 o/w hit  Deviation: [RS] surrender if TC 4+ or 5+ o/w stand
         elif self.dealer == 10 and self.count >= 4 or self.dealer == 11 and self.count >= 5:
             if self.decision in self.action_rs:
@@ -932,7 +1000,7 @@ class Historical_performance():
 
 # Begin the program!!
 # Print instructions
-instruction()
+introduction()
 
 # Mark the start time for the game
 game_time_start = time_current()
@@ -1011,7 +1079,8 @@ print('\n¡Hecho! ¡La programación esta terminada!\n\n')
     # PH: 14  DH: 10  BS: [H]it  Deviation: [RH] surrender if TC 3+ o/w hit
     # PH: 15  DH: 9   BS: [H]it  Deviation: [RH] surrender if TC 2+ o/w hit
     # PH: 15  DH: 10  BS: [RH] surrender if 0<=TC<4 o/w hit  Deviation: [H]it if TC 0-; [RS] surrender if TC 4+ o/w stand
-    # PH: 15  DH: A   BS: [RH] surrender if -1<=TC<5 o/w hit Deviation: [H]it if TC -1-; [RS] surrender if TC 5+ o/w stand
+        # Ceiling rounding method: This poses an issues for PH: 15 DH: A TC: -1.5
+    # PH: 15  DH: A   BS: [RH] surrender if -1<=TC<5 o/w hit Deviation: [H]it if TC <-1; [RS] surrender if TC 5+ o/w stand
     # PH: 16  DH: 8   BS: [H]it  Deviation: [RH] surrender if TC 4+ o/w hit
     # PH: 16  DH: 9   BS: [RH] surrender if -1<TC<4 o/w hit Deviation: [H]it if TC -1-; [RS] surrender if TC 4+ o/w stand
     # PH: 16  DH: 10  BS: [RH] surrender if TC<=0 o/w hit Deviation: [RS] surrender if TC 0+ o/w stand
